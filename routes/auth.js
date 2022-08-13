@@ -2,11 +2,13 @@ import express from 'express'
 
 const router = express.Router();
 
-import {register, login, logout} from '../controllers/auth'
+import {register, login, logout, verifyUser} from '../controllers/auth'
+import { requireSignIn } from '../middleware';
 
 router.post("/register", register)
 router.post("/login", login)
 router.get("/logout", logout)
+router.get("/current-user", requireSignIn, verifyUser)
 
 
 module.exports = router

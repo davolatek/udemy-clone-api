@@ -81,3 +81,9 @@ export const logout = async (req, res) =>{
     console.log(error)
   }
 }
+
+export const verifyUser = async (req, res) =>{
+  const user = await User.findById(req._id).select('-password').exec()
+
+  return res.json(user)
+}
